@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">News</string>
+    <string name="news">News</string>
+    <string name="categories">Categories</string>
+    <string name="news_headline">News Headline</string>
+    <string name="sublines">Sublines</string>
+</resources>
