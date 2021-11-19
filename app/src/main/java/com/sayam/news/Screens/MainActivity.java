@@ -86,8 +86,10 @@ public class MainActivity extends AppCompatActivity implements CategoriesRVAdapt
                 bar.setVisibility(View.GONE);
                 ArrayList<Articles> articlesArrayList = newsModel.getArticles();
                 for (int i = 0; i<articlesArrayList.size();i++){
-                    articlesArrayList.add(new Articles(articlesArrayList.get(i).getTitle(),articlesArrayList.get(i).getDescription(),articlesArrayList.get(i).getUrl(),
-                            articlesArrayList.get(i).getUrlTOImage(),articlesArrayList.get(i).getContent()));
+                    articlesArrayList.add(new Articles(articlesArrayList.get(i).getTitle()
+                            ,articlesArrayList.get(i).getDescription()
+                            ,articlesArrayList.get(i).getUrl()
+                            ,articlesArrayList.get(i).getUrlTOImage(),articlesArrayList.get(i).getContent()));
                 }
                 newsRVAdapter.notifyDataSetChanged();
 
