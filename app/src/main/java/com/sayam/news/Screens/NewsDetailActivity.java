@@ -3,12 +3,14 @@ package com.sayam.news.Screens;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import com.sayam.news.R;
 
 public class NewsDetailActivity extends AppCompatActivity {
 
     String title, description , image,url,content;
+    ImageView newsImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,5 +21,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         image = getIntent().getStringExtra("image");
         url = getIntent().getStringExtra("url");
         content = getIntent().getStringExtra("content");
+        newsImg = findViewById(R.id.newsImg);
+
     }
 }

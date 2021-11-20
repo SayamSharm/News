@@ -67,7 +67,8 @@ public class MainActivity extends AppCompatActivity implements CategoriesRVAdapt
         bar.setVisibility(View.VISIBLE);
         articlesArrayList.clear();
         String categoryUrl = "https://newsapi.org/v2/top-headlines?country=in&category"+ category + "&apiKey=98dfef7782c948dbbd30464daa6a1155";
-        String BASEURL = "https://newsapi.org/v2/top-headlines?country=in&apiKey=98dfef7782c948dbbd30464daa6a1155";
+        String Url = "http://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=98dfef7782c948dbbd30464daa6a1155";
+        String BASEURL = "http://newsapi.org/";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASEURL)
                 .addConverterFactory(GsonConverterFactory.create())
