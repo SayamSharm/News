@@ -22,8 +22,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/news"
                 android:textAlignment="center"
-                android:textSize="20sp"
-                android:textColor="@color/yellow"/>
+                android:textColor="@color/yellow"
+                android:textSize="20sp" />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 

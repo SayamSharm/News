@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.sayam.news.Adapter.CategoriesRVAdapter;
 import com.sayam.news.Adapter.NewsRVAdapter;
 import com.sayam.news.Interface.RetrofitApi;
@@ -33,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements CategoriesRVAdapt
     CategoriesRVAdapter categoriesRVAdapter;
     NewsRVAdapter newsRVAdapter;
 
-    // 98dfef7782c948dbbd30464daa6a1155
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements CategoriesRVAdapt
     }
 
     public void getCategories(){
-        categoryRVModelArrayList.add(new CategoryRVModel("All","https://play-lh.googleusercontent.com/bH09QfgOWx2qX6N-APmOXbOsiFgVbWpc0jaKww8e_i1NsuIbBhqNXMeZ1C5jGFstsVg=s180-rw"));
+        categoryRVModelArrayList.add(new CategoryRVModel("","https://play-lh.googleusercontent.com/bH09QfgOWx2qX6N-APmOXbOsiFgVbWpc0jaKww8e_i1NsuIbBhqNXMeZ1C5jGFstsVg=s180-rw"));
         categoryRVModelArrayList.add(new CategoryRVModel("Technology","https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80"));
         categoryRVModelArrayList.add(new CategoryRVModel("Science","https://images.unsplash.com/photo-1518364538800-6bae3c2ea0f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80"));
         categoryRVModelArrayList.add(new CategoryRVModel("Sports","https://crosspointacademy.org/wp-content/uploads/2017/05/sports-news.jpg"));
@@ -66,12 +68,15 @@ public class MainActivity extends AppCompatActivity implements CategoriesRVAdapt
     public void getNews(String category){
         bar.setVisibility(View.VISIBLE);
         articlesArrayList.clear();
-        String categoryUrl = "https://newsapi.org/v2/top-headlines?country=in&category"+ category + "&apiKey=98dfef7782c948dbbd30464daa6a1155";
-        String Url = "http://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=98dfef7782c948dbbd30464daa6a1155";
+        String categoryUrl = "https://newsapi.org/v2/top-headlines?country=in&category"+ category + "&apiKey=5b7d2aceeb2f4d718092f88e1e89d70e";
+        String Url = "http://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=5b7d2aceeb2f4d718092f88e1e89d70e";
         String BASEURL = "http://newsapi.org/";
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASEURL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         RetrofitApi api = retrofit.create(RetrofitApi.class);
         Call<NewsModel> call;
@@ -100,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements CategoriesRVAdapt
             @Override
             public void onFailure(Call<NewsModel> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "error is"+t.getMessage(), Toast.LENGTH_LONG).show();
+                Log.d("TAG", "onFailure: Error is "+t.getMessage());
             }
         });
     }
