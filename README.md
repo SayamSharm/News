@@ -1,2 +1,3 @@
 # News
-you can check my app from playstore -
+Threre are some error please check
+
